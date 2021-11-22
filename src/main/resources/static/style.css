@@ -1,0 +1,426 @@
+body {
+    text-align: center;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: auto;
+    background: rgba(0, 0, 0, 0.8);
+    /*background: linear-gradient(180deg, darkmagenta 0%, rgba(255,255,255,1) 100%);*/
+}
+
+#leftNav {
+    display: flex;
+
+
+}
+
+#rightNav {
+    display: flex;
+    align-items: center;
+
+}
+
+nav a {
+    color: white;
+    font-size: 2em;
+    text-decoration: none;
+    transition: background 0.5s;
+    display: block;
+    padding: 1em;
+    font-family: 'Arial';
+}
+
+nav a:hover, #logBtn:hover {
+    background: white;
+    color: black;
+
+}
+
+nav p {
+    color: white;
+}
+
+#logBtn {
+    background: inherit;
+    border: none;
+    color: white;
+    font-size: 2em;
+    transition: background 0.5s;
+    display: block;
+    padding: 1em;
+    cursor: pointer;
+}
+
+form {
+    text-align: center;
+    margin: 0 auto;
+    border-radius: 25px;
+}
+
+.product-container {
+    display: flex;
+    justify-content: center;
+}
+
+.product-list-form {
+    width: 30vw;
+}
+
+.product-list {
+    border-bottom: 1px solid black;
+}
+
+.product-list-table input {
+    border: none;
+    background: white
+}
+
+
+input {
+    margin: 0.5em;
+}
+
+#container {
+    margin-bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#container h3, #container p {
+    margin: 0;
+}
+
+progress {
+    background: aliceblue;
+}
+
+#calories::-webkit-progress-bar {
+    background: white;
+    border: 2px solid red;
+}
+
+#calories::-webkit-progress-value {
+    background: red;
+}
+
+#fat::-webkit-progress-bar {
+    background: white;
+    border: 2px solid yellow;
+}
+
+#fat::-webkit-progress-value {
+    background: yellow;
+}
+
+#protein::-webkit-progress-bar {
+    background: white;
+    border: 2px solid navajowhite;
+}
+
+#protein::-webkit-progress-value {
+    background: navajowhite;
+}
+
+#carbohydrates::-webkit-progress-bar {
+    background: white;
+    border: 2px solid greenyellow;
+}
+
+#carbohydrates::-webkit-progress-value {
+    background: greenyellow;
+}
+
+#selectStyle {
+    margin-bottom: 25px;
+}
+
+#usersSelect {
+    font-size: 2em;
+}
+
+table {
+    margin: 0 auto;
+}
+
+.delete {
+    margin: 0;
+    border: none;
+    height: auto;
+    width: auto;
+}
+
+.round {
+    border-radius: 50%;
+}
+
+.dateSelection {
+    display: flex;
+    justify-content: space-between;
+}
+
+.previous {
+    display: inline-block;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-right: 40px solid black;
+    transition: 0.5s transform;
+}
+
+.next {
+    display: inline-block;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-left: 40px solid black;
+}
+
+.previous:hover, .next:hover {
+    transform: scale(1.1);
+    transition: 0.5s transform;
+}
+
+.styled-text {
+    width: 70%;
+    margin: 0 auto;
+    text-align: left;
+    font-size: larger;
+}
+
+.flex-container {
+    display: flex;
+    width: 80%;
+    justify-content: space-evenly;
+    margin: 0 auto;
+    font-size: large;
+    text-align: left;
+    margin-top: 25px;
+}
+
+/*FLEX BOXES*/
+
+.flex1, .flex2 {
+    padding: 1.5em;
+    flex: 20%;
+    border: 1px solid;
+    box-shadow: 1px 1px 1px 1px black;
+}
+
+.flex3 {
+    padding: 1.5em;
+}
+
+.flex4 {
+
+}
+
+.flex5 {
+
+}
+
+.flex6 {
+
+}
+
+/* END OF FLEXBOX*/
+.macro {
+    margin-bottom: 25px;
+}
+
+#logged {
+    width: 100%;
+}
+
+
+table {
+    border-collapse: collapse;
+    margin-top: 50px;
+}
+
+table a {
+    text-decoration: none;
+    display: inline-block;
+}
+
+td {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 5px;
+    background: whitesmoke;
+}
+
+th {
+    background: rgba(0, 0, 0, .8);
+    color: white;
+    padding: 5px;
+    border: 1px solid #dddddd;
+}
+
+table button {
+    background: white;
+}
+
+table input {
+    text-align: center;
+}
+
+thead {
+    font-weight: bold;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+/* ICONS*/
+.fa-user {
+    color: white;
+    margin-right: 10px;
+    font-size: 2em !important;
+}
+
+.fa-lock {
+    color: white;
+}
+
+.fa-lock:hover {
+    color: black;
+}
+
+.fa-arrow-circle-left {
+    font-size: 2em !important;
+    padding-right: 10px;
+    vertical-align: sub;
+    color: black;
+}
+
+.fa-arrow-circle-right {
+    font-size: 2em !important;
+    padding-left: 10px;
+    vertical-align: sub;
+    color: black;
+}
+
+.fa-user-circle, .fa-user-plus {
+    font-size: 3em !important;
+}
+
+/* END OF ICONS STYLIGN*/
+
+.addProduct {
+    display: block;
+    width: 100%;
+    color: white;
+}
+
+.login-form {
+    border-collapse: collapse;
+    display: flex;
+    flex-direction: column;
+    width: 16%;
+    margin-top: 2em;
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    padding: 25px;
+    height: 204px;
+    font-family: sans-serif;
+    justify-content: flex-end;
+    background: rgba(0, 0, 0, 0.01);
+    text-align: center;
+}
+
+.registry-form {
+    border-collapse: collapse;
+    display: flex;
+    flex-direction: column;
+    width: 16%;
+    margin-top: 6em;
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    padding: 25px;
+    height: 260px;
+    font-family: sans-serif;
+    justify-content: flex-end;
+    background: rgba(0, 0, 0, 0.01);
+}
+
+/*ERROR STYLING*/
+.error {
+    color: red;
+    text-align: left;
+    float: left;
+    position: relative;
+    left: 340px;
+    top: -35px;
+    height: 0;
+}
+
+.error2 {
+    color: red;
+    text-align: left;
+    float: left;
+    position: relative;
+    left: -310px;
+    top: 10px;
+    height: 0;
+}
+
+/*END OF ERROR STYLING*/
+.login-form input, .registry-form input {
+    font-size: 1.2em;
+}
+
+.register-btn {
+    display: block;
+    /*background: rgb(2,0,36);*/
+    background: rgba(0, 0, 0, .8);
+    /*background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(55,76,5,1) 0%, rgba(9,88,121,1) 58%, rgba(0,212,255,1) 100%);*/
+    text-align: center;
+    align-content: center;
+    margin: 0 auto;
+    font-size: 2em;
+    width: fit-content;
+    padding: 5px;
+    margin-top: 25px;
+    text-decoration: none;
+    box-shadow: 1px 1px 1px 1px black;
+    color: white;
+    transition: 0.5s all;
+}
+
+.register-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 3px 3px 3px 3px black;
+    border-radius: 10%;
+}
+
+.delete, .add {
+    font-size: 1.2em;
+    cursor: pointer;
+    background: none;
+}
+
+.add {
+    background: white;
+}
+
+/*MEAL-LIST*/
+.nutrition-detail {
+
+}
+
+/*END of MEAL-LIST*/
+
+/*CHART*/
+.chart-wrapper {
+ margin:0 auto;
+ margin-top:40px;
+ width:40% !important;
+ position:relative;
+}
+
+canvas {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+/*END of CHART*/

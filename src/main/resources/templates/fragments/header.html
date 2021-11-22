@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<nav id="nav" th:fragment="header">
+
+    <div id="leftNav">
+        <a th:href="@{/}">Strona główna</a>
+        <a th:href="@{/about}">O ketozie</a>
+
+        <a th:unless="${session.isEmpty()}" th:href="@{/product}">Produkty</a>
+        <a th:unless="${session.isEmpty()}" th:href="@{/bmr}">Oblicz BMR</a>
+    </div>
+    <div id="rightNav">
+        <!--/*@thymesVar id="userName" type="pl.ketodiet.model.User"*/-->
+        <i class="fa fa-user" th:unless="${session.isEmpty()}"></i>
+        <p th:unless="${session.isEmpty()}" th:text="'Witaj ' + ${userName}"></p>
+
+        <a th:if="${session.isEmpty() }" th:href="@{/login}"><i class="fa fa-lock"></i> Zaloguj się</a>
+        <a th:unless="${session.isEmpty() }" th:href="@{/logout}">Wyloguj się</a>
+    </div>
+
+</nav>
+</body>
+</html>

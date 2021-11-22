@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>KETO DIET APP</title>
+    <link rel="stylesheet" th:href="@{style.css}"/>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body>
+<div th:replace="~{fragments/header::header}"></div>
+
+<form th:action="@{/login}" th:object="${user}" method="post" class="login-form">
+
+    <i class="fa fa-user-circle"></i>
+    <h2>Logowanie</h2>
+
+    <input id="username" type="text" name="username" th:field="*{name}" placeholder='Login'/>
+
+    <input id="password" type="password" name="password" th:field="*{password}"
+           placeholder='Hasło'/>
+    <input type="submit" value="Zaloguj się" style="cursor: pointer"/>
+
+</form>
+
+<a th:href="@{/registry}" class="register-btn">Zarejestruj się</a>
+
+<p th:text="${error}" style="color:red; font-size:2em;"></p>
+
+</body>
+</html>

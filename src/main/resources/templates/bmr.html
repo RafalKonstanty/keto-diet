@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>KETO DIET APP</title>
+    <link rel="stylesheet" th:href="@{style.css}"/>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body>
+<div th:replace="~{fragments/header::header}"></div>
+
+<div class="flex3">
+    <table>
+
+        <thead>
+        <th colspan="2"><p>Przedstawiony poniżej kalkulator opiera się na wzorach Mifflina</p>
+        </th>
+        </thead>
+
+        <tbody>
+        <form method="post" th:action="@{/bmr}" class="product-list-form">
+
+
+            <tr>
+                <td><label for="weight">Waga [kg]:</label></td>
+                <td><input id="weight" type="text" name="weight" value="0"/>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td><label for="height">Wzrost [cm]:</label></td>
+                <td><input id="height" type="text" name="height" value="0"/></td>
+            </tr>
+
+            <tr>
+                <td><label for="age">Wiek:</label></td>
+                <td><input id="age" type="text" name="age" value="0"/></td>
+            </tr>
+
+            <tr>
+                <td><label for="sex">Podaj płeć:</label></td>
+                <td><select name="sex" id="sex">
+                    <option value="male">Mężczyzna</option>
+                    <option value="female">Kobieta</option>
+                </select></td>
+            </tr>
+
+            <tr>
+                <td><label for="activity">Wybierz rodzaj aktywności fizycznej</label></td>
+                <td><select name="activity" id="activity">
+                    <option value="0">Brak</option>
+                    <option value="8">Siłowe</option>
+                    <option value="7">Aerobiczne</option>
+                </select></td>
+            </tr>
+
+            <tr>
+                <td><label for="minutes">Podaj ilość aktywności fizycznej w minutach</label></td>
+                <td><input id="minutes" type="text" name="minutes" value="0"/></td>
+            </tr>
+
+
+            <tr>
+                <td><label for="goal">Wybierz swój cel:</label></td>
+                <td><select name="goal" id="goal">
+                    <option value="0">Utrzymanie wagi</option>
+                    <option value="-300">Spalanie tkanki tłuszczowej</option>
+                    <option value="300">Zwiększenie masy mięśniowej</option>
+                </select></td>
+            </tr>
+
+            <tr>
+                <td colspan="2"><input type="submit" value="Oblicz"/></td>
+            </tr>
+
+        </form>
+
+        </tbody>
+    </table>
+
+    <h2 th:text="${fieldsEmptyCheck}"></h2>
+    <p th:text="${TDEE}"></p>
+
+
+</div>
+
+<div class="flex-container">
+    <div class="flex1">
+        <h2>Zapotrzebowanie kaloryczne – czym tak właściwie jest?</h2>
+        <p>Zapotrzebowanie kaloryczne, inaczej całkowita przemiana materii (CPM), to ilość energii (kilokalorii), którą
+            należy dostarczyć każdego dnia wraz z pożywieniem do naszego organizmu. Znajomość wartości CPM jest
+            niezbędna do zaplanowania diety. Musimy jednak zdać sobie sprawę, że wyliczona wartość CPM będzie tylko
+            szacunkowa. Nie jesteśmy w stanie obliczyć zapotrzebowania dokładnego w 100%. Wszystko staje się jasne w
+            momencie, kiedy zaczynamy stosować dietę. Wtedy też możemy tak naprawdę wprowadzić ewentualne zmiany, które
+            pomogą nam doprecyzować dietę.</p>
+    </div>
+
+    <div class="flex2">
+        <h2>BMR – podstawowa przemiana materii</h2>
+        <p>Podstawowa przemiana materii (PPM, znana również jako BMR) to liczba kilokalorii, której potrzebujemy do
+            podtrzymania podstawowych funkcji życiowych i prawidłowego funkcjonowania organizmu. Możemy do nich zaliczyć
+            m.in. procesy fizjologiczne, oddychanie, sen, trawienie, utrzymanie prawidłowej temperatury ciała. Im wyższa
+            jest wartość PPM, tym większe jest zapotrzebowanie kaloryczne.</p>
+    </div>
+
+</div>
+
+</body>
+</html>

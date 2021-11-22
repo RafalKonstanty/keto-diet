@@ -1,0 +1,118 @@
+<!--
+TODO Stworzyć Lodówkę, która na bazie stworzonych produktów utworzy listę, ta lista będzie automatycznie ilosć produktów pobierać z chwilą przypisania ilości produktów do użytkownika (zjedzony posiłek danego dnia),
+z możliwością ręcznej edycji ilości w przypadku gdyby wystapił błąd lub produkt w lodówce się zepsuł.
+-->
+<!--
+TODO Stworzyć opcję listy zakupów z możliwością wydrukowania produktów
+-->
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>KETO DIET APP</title>
+    <link rel="stylesheet" th:href="@{style.css}"/>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="js/jquery-3.4.1.min.js" defer></script>
+    <script src="loader.js" defer></script>
+
+</head>
+<body>
+<div th:replace="~{fragments/header::header}">
+
+</div>
+
+<div class="product-container">
+
+    <div>
+        <form method="post" th:object="${product}" th:action="@{/product}" class="product-list-form">
+            <table class="product-list-table">
+                <thead>
+                <th colspan="2">
+                    <p>Ilość makroskładników należy podawać w odniesieniu do 100g</p>
+                </th>
+
+                </thead>
+                <tbody>
+                <tr>
+
+                    <td><label for="name">Nazwa produktu:</label></td>
+                    <td><input type="text" th:field="*{name}" id="name" placeholder="">
+                        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error2"></span></td>
+                </tr>
+                <tr>
+
+                    <td><label for="protein">Białko:</label></td>
+                    <td><input type="text" th:field="*{protein}" id="protein" placeholder="Ilość białka:"/></td>
+                </tr>
+                <tr>
+
+                    <td><label for="fat">Tłuszcz:</label></td>
+                    <td><input type="text" th:field="*{fat}" id="fat" placeholder="Ilość tłuszczu"/></td>
+                </tr>
+                <tr>
+
+                    <td><label for="carbohydrates">Węglowodany:</label></td>
+                    <td><input type="text" th:field="*{carbohydrates}" id="carbohydrates"
+                               placeholder="Ilość węglowodanów"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <button type="submit" class="add"><i class="fa fa-plus"></i> Utwórz produkt</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+        </form>
+
+    </div>
+
+    <div id="productList">
+        <table>
+
+            <thead>
+            <th colspan="6">Lista stworzonych produktów ( wartość podana na 100g produktu )</th>
+            </thead>
+            <tr>
+                <!--            <td>ID</td>-->
+                <td>Nazwa produktu</td>
+                <td>Kalorie</td>
+                <td>Tłuszcz</td>
+                <td>Białko</td>
+                <td>Węglowodany</td>
+                <td>Ilość w [g]</td>
+            </tr>
+
+            <tr th:each="products : ${productList}" class="product-list">
+
+                <td><p th:text="${products.name}"></p></td>
+                <td><p th:text="${products.kcal}"></p></td>
+                <td><p th:text="${products.fat}"></p></td>
+                <td><p th:text="${products.protein}"></p></td>
+                <td><p th:text="${products.carbohydrates}"></p></td>
+
+                <td>
+                    <form method="post" th:object="${meal}" th:action="@{/product/user}">
+                        <input type="text" th:field="*{count}">
+                        <input type="hidden" th:value="${products.product_id}" name="product_id"/>
+                        <button type="submit" class="add"><i class="fa fa-plus"></i></button>
+                    </form>
+                </td>
+
+                <td>
+                    <form method="post" th:object="${products}" th:action="@{/product/deleteProduct}" class="delete">
+                        <input type="hidden" th:value="${products.product_id}" name="product_id"/>
+                        <button type="submit" class="delete"><i class="fa fa-trash-o"></i></button>
+                    </form>
+                </td>
+
+            </tr>
+
+        </table>
+
+    </div>
+</div>
+
+</body>
+</html>

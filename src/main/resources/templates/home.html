@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>KETO DIET APP</title>
+    <!--    TODO przenieść wszystkie linki do fragmentu w headerze-->
+    <link rel="stylesheet" th:href="@{style.css}"/>
+    <link rel="stylesheet" href="responsive.css"/>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="Chart.min.js" defer></script>
+    <script src="script.js" defer></script>
+
+
+</head>
+<body>
+<div th:replace="~{fragments/header::header}"></div>
+
+<div id="container">
+
+    <div th:if="${session.isEmpty()}">
+
+        <img src="keto.png" alt="obraz"/>
+
+    </div>
+
+    <!--CHART-->
+    <div style="" th:unless="${session.isEmpty()}" class = "chart-wrapper">
+        <canvas id="myChart" class="my-chart" width="500" height="250"></canvas>
+    </div>
+
+    <div id="logged" th:unless="${session.isEmpty()}">
+
+        <div class="flex4">
+            <table class="nutrition-detail">
+                <thead>
+                <th>
+                    <p th:text="'Użytkownik: ' + ${userName}"></p>
+
+                </th>
+                </thead>
+                <tbody>
+
+                <!--/*@thymesVar id="calories" type="pl.ketodiet.app.services.MealService"*/-->
+                <tr>
+                    <td>
+                        <p th:text="'Spożyte kalorie: ' + ${calories} + ' kcal z '+ ${maxCalories} + ' kcal dziennego zapotrzebowania'"></p>
+                        <!--                        <p id="calories" th:text="'Spożyte kalorie: ' + ${calories} + ' kcal'" th:max="3000"></p>-->
+                    </td>
+                </tr>
+                <tr>
+                    <td><p th:text="'Tłuszcz: ' + ${fat} + 'g z '+ ${goalFats} + 'g'"></p></td>
+                </tr>
+                <tr>
+                    <td>
+                        <p th:text="'Białko: ' + ${protein} + 'g z ' + ${goalProteins} + 'g'"></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p th:text="'Węglowodany: ' + ${carbohydrates} + 'g z ' + ${goalCarbohydrates} + 'g'"></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p th:text="${'Twój plan żywieniowy na dzień: '}"></p>
+
+                        <a th:href="@{/(date=${localDate.minusDays(1)}) }"><i class="fa fa-arrow-circle-left"></i>
+                        </a>
+                        <h2 th:text="${localDate}" style="display: inline-block"></h2>
+                        <a th:href="@{/(date=${localDate.plusDays(1)}) }"><i class="fa fa-arrow-circle-right"></i>
+                        </a>
+                </tr>
+
+                </tbody>
+            </table>
+
+        </div>
+
+        <progress id="fat" th:value="${fatPercentage}" name="fat" th:max="100" style="display: none"></progress>
+        <progress id="protein" th:value="${protPercentage}" name="protein" th:max="100"
+                  style="display: none"></progress>
+        <progress id="carbohydrates" th:value="${carbPercentage}" name="carbohydrates" th:max="100"
+                  style="display: none"></progress>
+        <progress id="calories" th:value="${calories}" name="calories" th:max="300000" style="display: none"></progress>
+
+        <div id="mealList" class="flex6">
+
+            <table>
+                <thead>
+                <tr>
+                    <th colspan="4">Lista skonsumowanych produktów</th>
+                    <th colspan="2"><a href="/product" class="addProduct"><i class="fa fa-plus"></i> Dodaj produkt</a>
+                    </th>
+                </tr>
+                </thead>
+
+                <tr>
+                    <td>Nazwa produktu</td>
+                    <td>Kalorie</td>
+                    <td>Tłuszcz</td>
+                    <td>Białko</td>
+                    <td>Węglowodany</td>
+                    <td>Ilość w [g]</td>
+                </tr>
+                <!--/*@thymesVar id="mealList" type="pl.ketodiet.app.model.Meal"*/-->
+                <tr th:each="meal : ${mealList}" class="product-list">
+
+                    <td><p th:text="${meal.product.name}"></p></td>
+                    <td th:with="var=${meal.product.kcal * meal.count} / 100"><p th:text="${#numbers.formatDecimal(var,1,2)}"></p></td>
+                    <td th:with="var=${meal.product.fat * meal.count} / 100"><p th:text="${#numbers.formatDecimal(var,1,2)}"></p></td>
+                    <td th:with="var=${meal.product.protein * meal.count} / 100"><p th:text="${#numbers.formatDecimal(var,1,2)}"></p></td>
+                    <td th:with="var=${meal.product.carbohydrates * meal.count} / 100"><p th:text="${#numbers.formatDecimal(var,1,2)}"></p></td>
+                    <td><p th:text="${meal.count}"></p></td>
+                    <td>
+                        <form method="post" th:object="${meal}" th:action="@{/deleteMeal}" class="delete">
+                            <input type="hidden" th:value="${meal.meal_id}" name="meal_id"/>
+                            <button type="submit" class="delete"><i class="fa fa-trash-o"></i></button>
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
