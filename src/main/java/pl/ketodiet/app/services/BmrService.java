@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestParam;
-import pl.ketodiet.app.model.User;
+import pl.ketodiet.app.model.UserEntity;
 import pl.ketodiet.app.repository.UserRepository;
 
 import javax.servlet.http.HttpSession;
@@ -66,10 +66,10 @@ public class BmrService {
 
 
     public void saveTdee(HttpSession session, double tdee) {
-        User sessionUser = (User) session.getAttribute(LOG_STATUS);
-        User user = userRepository.getUserByName(sessionUser.getName());
-        user.setTdee(tdee);
-        userRepository.save(user);
+        UserEntity sessionUserEntity = (UserEntity) session.getAttribute(LOG_STATUS);
+        UserEntity userEntity = userRepository.getUserByName(sessionUserEntity.getName());
+        userEntity.setTdee(tdee);
+        userRepository.save(userEntity);
     }
 
     public boolean fieldsCheck(Model model,

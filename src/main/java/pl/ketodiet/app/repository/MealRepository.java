@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public interface MealRepository extends CrudRepository<Meal, Integer> {
 
-    @Query("SELECT m FROM Meal m WHERE m.product.user.id = :user_id AND m.date = :date ")
+    @Query("SELECT m FROM Meal m WHERE m.product.userEntity.id = :user_id AND m.date = :date ")
     List<Meal> findMealByUserAndDate(@Param("user_id") int id, @Param("date") LocalDate localDate);
 
     @Query("SELECT m FROM Meal m WHERE m.product.product_id = :product_id")

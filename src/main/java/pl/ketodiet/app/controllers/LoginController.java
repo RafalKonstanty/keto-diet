@@ -7,7 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import pl.ketodiet.app.model.User;
+import pl.ketodiet.app.model.UserEntity;
 import pl.ketodiet.app.repository.UserRepository;
 import pl.ketodiet.app.services.LoginService;
 
@@ -27,16 +27,16 @@ public class LoginController {
     public static final String LOG_STATUS = "logStatus";
 
     @GetMapping()
-    public String loginView(Model model, User user) {
-        model.addAttribute("user", new User());
+    public String loginView(Model model, UserEntity userEntity) {
+        model.addAttribute("userEntity", new UserEntity());
         return "login";
     }
 
     @PostMapping()
-    public String loginPost(HttpServletRequest request, Model model, User user) {
-        if (loginService.isLoginCorrect(user)) {
-            user = userRepository.getUserByName(user.getName());
-            request.getSession().setAttribute(LOG_STATUS, user);
+    public String loginPost(HttpServletRequest request, Model model, UserEntity userEntity) {
+        if (loginService.isLoginCorrect(userEntity)) {
+            userEntity = userRepository.getUserByName(userEntity.getName());
+            request.getSession().setAttribute(LOG_STATUS, userEntity);
             return "redirect:/";
         } else {
             model.addAttribute("error", "Błędny login lub hasło!");

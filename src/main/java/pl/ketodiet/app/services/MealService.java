@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import pl.ketodiet.app.model.Meal;
-import pl.ketodiet.app.model.User;
+import pl.ketodiet.app.model.UserEntity;
 import pl.ketodiet.app.repository.MealRepository;
 
 import javax.servlet.http.HttpSession;
@@ -25,14 +25,14 @@ public class MealService {
 
     public void getMealNutritionModels(Model model, HttpSession session, LocalDate currentDate) {
         try {
-            User user = userService.getSessionUser(session);
-            List<Meal> mealList = mealRepository.findMealByUserAndDate(user.getId(), currentDate);
+            UserEntity userEntity = userService.getSessionUser(session);
+            List<Meal> mealList = mealRepository.findMealByUserAndDate(userEntity.getId(), currentDate);
             model.addAttribute("mealList", mealList);
 
             double kcal = mealList.stream().mapToDouble
                     (meal -> (meal.getProduct().getKcal() * meal.getCount()) / 100).sum();
             model.addAttribute("calories", (Math.round(kcal * 10) / 10));
-            double maxKcal = user.getTdee();
+            double maxKcal = userEntity.getTdee();
             model.addAttribute("maxCalories", (Math.round(maxKcal * 10) / 10));
 
             double fat = mealList.stream().mapToDouble

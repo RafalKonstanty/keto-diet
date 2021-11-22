@@ -14,8 +14,8 @@
         <a th:unless="${session.isEmpty()}" th:href="@{/bmr}">Oblicz BMR</a>
     </div>
     <div id="rightNav">
-        <!--/*@thymesVar id="userName" type="pl.ketodiet.model.User"*/-->
-        <i class="fa fa-user" th:unless="${session.isEmpty()}"></i>
+        <!--/*@thymesVar id="userName" type="pl.ketodiet.model.UserEntity"*/-->
+        <i class="fa fa-userEntity" th:unless="${session.isEmpty()}"></i>
         <p th:unless="${session.isEmpty()}" th:text="'Witaj ' + ${userName}"></p>
 
         <a th:if="${session.isEmpty() }" th:href="@{/login}"><i class="fa fa-lock"></i> Zaloguj się</a>

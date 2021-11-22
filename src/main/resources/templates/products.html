@@ -93,7 +93,7 @@ TODO Stworzyć opcję listy zakupów z możliwością wydrukowania produktów
                 <td><p th:text="${products.carbohydrates}"></p></td>
 
                 <td>
-                    <form method="post" th:object="${meal}" th:action="@{/product/user}">
+                    <form method="post" th:object="${meal}" th:action="@{/product/userEntity}">
                         <input type="text" th:field="*{count}">
                         <input type="hidden" th:value="${products.product_id}" name="product_id"/>
                         <button type="submit" class="add"><i class="fa fa-plus"></i></button>

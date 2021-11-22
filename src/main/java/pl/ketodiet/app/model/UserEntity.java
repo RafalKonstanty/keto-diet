@@ -11,7 +11,8 @@ import java.util.List;
 @Entity
 @Data
 @RequiredArgsConstructor
-public class User {
+@Table(name = "userEntity")
+public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -22,12 +23,12 @@ public class User {
     private String password;
     private double tdee;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "userEntity")
     private List<Product> product;
 
     @Override
     public String toString() {
-        return "User{" +
+        return "UserEntity{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", password='" + password + '\'' +

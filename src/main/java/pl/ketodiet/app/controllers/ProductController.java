@@ -37,7 +37,7 @@ public class ProductController {
 
     @ModelAttribute(name = "productList")
     public List<Product> productsList(HttpSession session) {
-        return productRepository.findProductByUser(userService.getSessionUser(session));
+        return productRepository.findProductByUserEntity(userService.getSessionUser(session));
     }
 
     @ModelAttribute(name = "product")
@@ -66,14 +66,14 @@ public class ProductController {
             return "products";
         } else {
             productService.getKcalFromNutrition(product);
-            product.setUser(userService.getSessionUser(session));
+            product.setUserEntity(userService.getSessionUser(session));
             productRepository.save(product);
             log.info("Dodano produkt: " + product);
             return "redirect:/product";
         }
     }
 
-    @PostMapping("/user")
+    @PostMapping("/userEntity")
     public String createDailyProduct(Product product, Meal meal) {
         productService.addMealToUser(product, meal );
         log.info("Dodano product do Usera: " );

@@ -9,9 +9,9 @@
 <body>
 <div th:replace="~{fragments/header::header}"></div>
 
-<form th:action="@{/login}" th:object="${user}" method="post" class="login-form">
+<form th:action="@{/login}" th:object="${userEntity}" method="post" class="login-form">
 
-    <i class="fa fa-user-circle"></i>
+    <i class="fa fa-userEntity-circle"></i>
     <h2>Logowanie</h2>
 
     <input id="username" type="text" name="username" th:field="*{name}" placeholder='Login'/>
